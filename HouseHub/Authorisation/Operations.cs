@@ -18,8 +18,8 @@ namespace HouseHub
     {
         public static readonly string CreateOperationName = "Create";
 
-        public static readonly string Admin = "Admin";
-        public static readonly string Officer = "Officer";
-        public static readonly string Landlord = "Landlord";
+        public static readonly string AdminRole = "Admin";
+        public static readonly string OfficerRole = "Officer";
+        public static readonly string LandlordRole = "Landlord";
     }
 }

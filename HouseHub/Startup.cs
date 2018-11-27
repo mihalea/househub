@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using HouseHub.Data;
-using HouseHub.Filters;
+using HouseHub.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
@@ -44,15 +44,17 @@ namespace HouseHub
             services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            services.AddAuthorization(options =>
+            services.ConfigureApplicationCookie(options =>
             {
-                options.AddPolicy("OnlyAdminAccess", policy => policy.RequireRole("Admin"));
-            });
-
-            services.ConfigureApplicationCookie(options => options.LoginPath = "/Identity/Account/Login"); 
+                options.LoginPath = "/Identity/Account/Login";
+                options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+            }); 
 
             services.AddMvc()
-                .AddRazorPagesOptions(options => { options.Conventions.AuthorizePage("/Add", "OnlyAdminAccess"); })
+                .AddRazorPagesOptions(options =>
+                {
+                    options.Conventions.AuthorizePage("/Add", new [] {Constants.AdminRole});
+                })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddScoped<IAuthorizationHandler, AdminAuthorisationHandler>();

@@ -19,7 +19,7 @@ namespace HouseHub.Authorisation
                 return Task.CompletedTask;
             }
 
-            if (context.User.IsInRole(Constants.Admin))
+            if (context.User.IsInRole(Constants.AdminRole))
             {
                 context.Succeed(requirement);
             }
