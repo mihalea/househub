@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Authorization.Infrastructure;
 
 namespace HouseHub.Authorisation
 {
-    public class AdminAuthorisationHandler : AuthorizationHandler<OperationAuthorizationRequirement, Accommodation>
+    public class AdminAuthorizationHandler : AuthorizationHandler<OperationAuthorizationRequirement, Accommodation>
     {
         protected override Task HandleRequirementAsync(AuthorizationHandlerContext context,
             OperationAuthorizationRequirement requirement, 
@@ -26,5 +26,7 @@ namespace HouseHub.Authorisation
 
             return Task.CompletedTask;
         }
+
+
     }
 }

@@ -45,24 +45,33 @@ namespace HouseHub.Pages
                 return Page();
             }
 
-            var isAuthorised = await AuthorizationService.AuthorizeAsync(User, null, Operations.Create);
+           
 
+            
             var fileName = DateTime.UtcNow.ToString("yyyyMMdd-THHmmss-") + ImageFile.FileName;
             var path = Path.Combine(_environment.ContentRootPath, "Uploads", fileName);
-            using (var fileStream = new FileStream(path, FileMode.Create))
+            var accommodation = new Accommodation
             {
-                await ImageFile.CopyToAsync(fileStream);
-            }
-
-            var accommodation = new Accommodation {
                 Name = Name,
                 Description = Description,
                 ImagePath = path
             };
 
-            Context.Accommodation.Add(accommodation);
-            Context.SaveChanges();
-         
+            var isAuthorised = await AuthorizationService.AuthorizeAsync(User, accommodation, Operations.Create);
+
+            if (isAuthorised.Succeeded)
+            {
+                using (var fileStream = new FileStream(path, FileMode.Create))
+                {
+                    await ImageFile.CopyToAsync(fileStream);
+                }
+
+                
+
+                Context.Accommodation.Add(accommodation);
+                Context.SaveChanges();
+            }
+
 
             return RedirectToPage("./Index");
         }

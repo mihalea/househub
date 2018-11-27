@@ -57,7 +57,7 @@ namespace HouseHub
                 })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            services.AddScoped<IAuthorizationHandler, AdminAuthorisationHandler>();
+            services.AddScoped<IAuthorizationHandler, AdminAuthorizationHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
