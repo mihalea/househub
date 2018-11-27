@@ -1,0 +1,25 @@
+﻿@page "{id?}"
+@model HouseHub.Pages.Property.ApproveModel
+@{
+    ViewData["Title"] = "Approve";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+
+<div class="row">
+    @foreach (var item in Model.Accommodation)
+    {
+        <article class="col-md-4 pb-5">
+            <h4 class="border-bottom pb-2">
+                <a href="#" class="text-dark">@Html.DisplayFor(modelItem => item.Name)</a>
+                <div class="float-right approve-buttons">
+                    <span class="oi oi-check mx-2" title="check" aria-hidden="true"></span>
+                    <span class="oi oi-x mx-2" title="x" aria-hidden="true"></span>
+                </div>
+                
+            </h4>
+            <p>@Html.DisplayFor(modelItem => item.Description)</p>
+            <img src="@item.ImagePath" class="img-fluid" />
+        </article>
+    }
+</div>

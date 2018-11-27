@@ -5,32 +5,28 @@ using System.Threading.Tasks;
 using HouseHub.Data;
 using HouseHub.Model;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
-namespace HouseHub.Pages
+namespace HouseHub.Pages.Property
 {
-    public class IndexModel : BasePageModel
+    public class ApproveModel : BasePageModel
     {
-        private IHostingEnvironment _environment;
+        [BindProperty] public IList<Accommodation> Accommodation { get; set; }
 
-        public IndexModel(
-            IHostingEnvironment environment,
+        public ApproveModel(
             ApplicationDbContext context,
             IAuthorizationService authorizationService,
             UserManager<IdentityUser> userManager) : base(context, authorizationService, userManager)
         {
-            _environment = environment;
         }
 
-        public IList<Accommodation> Accommodation { get; set; }
-
+        
         public async Task OnGetAsync()
         {
-            Accommodation = await Context.Accommodation.Where(a => a.Approved == true).ToListAsync();
+            Accommodation = await Context.Accommodation.Where(a => a.Approved == false).ToListAsync();
         }
     }
 }
