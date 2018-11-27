@@ -10,9 +10,11 @@ using HouseHub.Model;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HouseHub.Pages
 {
+    [Authorize(Roles = "Admin")]
     public class AddModel : PageModel
     {
         private readonly ApplicationDbContext _context;
