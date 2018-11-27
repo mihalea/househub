@@ -32,7 +32,7 @@ article > img {
   width: 100%;
   max-height: 300px; }
 
-.approve-buttons > span {
+.approve-buttons span {
   font-size: 20px; }
 
 .approve-buttons .oi-check {
@@ -40,3 +40,9 @@ article > img {
 
 .approve-buttons .oi-x {
   color: #E74C3C; }
+
+.approve-buttons button {
+  background: none;
+  padding: 0px;
+  border: none;
+  cursor: pointer; }

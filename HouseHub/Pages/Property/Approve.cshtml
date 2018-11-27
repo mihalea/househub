@@ -6,15 +6,19 @@
 }
 
 
-<div class="row">
-    @foreach (var item in Model.Accommodation)
+<form class="row" method="post">
+    @foreach (var item in Model.AccommodationList)
     {
         <article class="col-md-4 pb-5">
             <h4 class="border-bottom pb-2">
                 <a href="#" class="text-dark">@Html.DisplayFor(modelItem => item.Name)</a>
                 <div class="float-right approve-buttons">
-                    <span class="oi oi-check mx-2" title="check" aria-hidden="true"></span>
-                    <span class="oi oi-x mx-2" title="x" aria-hidden="true"></span>
+                    <button type="submit"  asp-page="/Property/Approve" asp-route-id="@item.AccommodationID">
+                        <span class="oi oi-check mx-2" title="check" aria-hidden="true"></span>
+                    </button>
+                    <button type="submit" asp-page="/Property/Approve" asp-route-id="@item.AccommodationID">
+                        <span class="oi oi-x mx-2" title="check" aria-hidden="true"></span>
+                    </button>
                 </div>
                 
             </h4>
@@ -22,4 +26,4 @@
             <img src="@item.ImagePath" class="img-fluid" />
         </article>
     }
-</div>
+</form>

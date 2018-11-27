@@ -14,7 +14,8 @@ namespace HouseHub.Pages.Property
 {
     public class ApproveModel : BasePageModel
     {
-        [BindProperty] public IList<Accommodation> Accommodation { get; set; }
+        [BindProperty] public IList<Accommodation> AccommodationList { get; set; }
+        [BindProperty] public Accommodation Accommodation { get; set; }
 
         public ApproveModel(
             ApplicationDbContext context,
@@ -26,7 +27,17 @@ namespace HouseHub.Pages.Property
         
         public async Task OnGetAsync()
         {
-            Accommodation = await Context.Accommodation.Where(a => a.Approved == false).ToListAsync();
+            AccommodationList = await Context.Accommodation.Where(a => a.Approved == false).ToListAsync();
+        }
+
+        public async Task<IActionResult> OnPostAsync(int id)
+        {
+            Accommodation = Context.Accommodation.Find(id);
+
+            Accommodation.Approved = true;
+            await Context.SaveChangesAsync();
+
+            return RedirectToPage("/Index");
         }
     }
 }

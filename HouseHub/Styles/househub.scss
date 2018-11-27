@@ -41,15 +41,22 @@ article > img {
 }
 
 .approve-buttons {
-    >span {
+    span {
         font-size: 20px;
     }
 
-.oi-check {
-    color: #18BC9C;
-}
+    .oi-check {
+        color: #18BC9C;
+    }
 
-.oi-x {
-    color: #E74C3C;
-}
+    .oi-x {
+        color: #E74C3C;
+    }
+
+    button {
+        background: none;
+        padding: 0px;
+        border: none;
+        cursor: pointer;
+    }
 }
