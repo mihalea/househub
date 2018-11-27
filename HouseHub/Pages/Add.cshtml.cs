@@ -15,7 +15,6 @@ using Microsoft.AspNetCore.Identity;
 
 namespace HouseHub.Pages
 {
-    [Authorize(Policy="OnlyAdminAccess")]
     public class AddModel : BasePageModel
     {
         private readonly IHostingEnvironment _environment;

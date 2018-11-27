@@ -49,7 +49,11 @@ namespace HouseHub
                 options.AddPolicy("OnlyAdminAccess", policy => policy.RequireRole("Admin"));
             });
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.ConfigureApplicationCookie(options => options.LoginPath = "/Identity/Account/Login"); 
+
+            services.AddMvc()
+                .AddRazorPagesOptions(options => { options.Conventions.AuthorizePage("/Add", "OnlyAdminAccess"); })
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddScoped<IAuthorizationHandler, AdminAuthorisationHandler>();
         }
