@@ -30,7 +30,7 @@ namespace HouseHub.Pages
 
         public async Task OnGetAsync()
         {
-            Accommodation = await Context.Accommodation.Where(a => a.Approved == true).ToListAsync();
+            Accommodation = await Context.Accommodation.Where(a => a.Pending == false).ToListAsync();
         }
     }
 }

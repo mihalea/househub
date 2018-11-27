@@ -15,5 +15,13 @@ namespace HouseHub.Model
         public string Description { get; set; }
         public string ImagePath { get; set; }
         public bool Approved { get; set; }
+        public bool Pending { get; set; }
+        public string Reason { get; set; }
+
+        public Accommodation()
+        {
+            Pending = true;
+            Approved = false;
+        }
     }
 }

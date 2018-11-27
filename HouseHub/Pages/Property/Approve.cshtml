@@ -5,6 +5,12 @@
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
+@if (Model.Message != null)
+{
+    <div class="alert alert-success my-5" role="alert">
+        @Model.Message
+    </div>
+}
 
 <form class="row" method="post">
     @foreach (var item in Model.AccommodationList)
@@ -16,9 +22,9 @@
                     <button type="submit"  asp-page="/Property/Approve" asp-route-id="@item.AccommodationID">
                         <span class="oi oi-check mx-2" title="check" aria-hidden="true"></span>
                     </button>
-                    <button type="submit" asp-page="/Property/Approve" asp-route-id="@item.AccommodationID">
+                    <a asp-page="/Property/Reject" asp-route-id="@item.AccommodationID">
                         <span class="oi oi-x mx-2" title="check" aria-hidden="true"></span>
-                    </button>
+                    </a>
                 </div>
                 
             </h4>
