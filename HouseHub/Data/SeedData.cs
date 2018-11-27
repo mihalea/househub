@@ -20,9 +20,9 @@ namespace HouseHub.Data
 
 
                 var adminID = await EnsureUser(serviceProvider, testUserPw, "admin@soton.ac.uk");
-                var managerID = await EnsureUser(serviceProvider, testUserPw, "officer@soton.ac.uk"); 
-
                 await EnsureRole(serviceProvider, adminID, "Admin");
+
+                var managerID = await EnsureUser(serviceProvider, testUserPw, "mircea@soton.ac.uk"); 
                 await EnsureRole(serviceProvider, managerID, "Officer");
             }
         }
