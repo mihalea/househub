@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -19,7 +20,7 @@ namespace HouseHub.Pages
     {
         private readonly IHostingEnvironment _environment;
 
-        [BindProperty] public IFormFile ImageFile { get; set; }
+        [BindProperty][Display(Name="Image")] public IFormFile ImageFile { get; set; }
         [BindProperty] public string Name { get; set; }
         [BindProperty] public string Description { get; set; }
 

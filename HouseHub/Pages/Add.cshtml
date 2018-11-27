@@ -5,39 +5,33 @@
     ViewData["Title"] = "Add";
 }
 
-<h2>Add</h2>
-
-<h4>Accommodation</h4>
+<h4>Add Accommodation</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
-        <form method="post" enctype="multipart/form-data">
+    <div class="col-md-6 offset-md-3">
+        <form method="post" enctype="multipart/form-data" class="p-5">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
+            <div class="mb-3">
+                <label asp-for="Name"></label>
+                <input asp-for="Name" class="form-control"/>
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
+            <div class="mb-3 pb-3">
+                <label asp-for="Description"></label>
+                <textarea asp-for="Description" class="form-control"></textarea>
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="ImageFile" class="control-label"></label>
-                <input asp-for="ImageFile" class="form-control" />
+            <div class="mb-3 custom-file pb-5">
+                <label asp-for="ImageFile" class="custom-file-label"></label>
+                <input asp-for="ImageFile" class="custom-file-input" />
+
                 <span asp-validation-for="ImageFile" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
+            <button type="submit" value="Create" class="btn btn-primary btn-lg btn-block">Add</button>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-page="Index">Back to List</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
