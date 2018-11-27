@@ -1,0 +1,37 @@
+﻿@page "{id}"
+@model HouseHub.Pages.Property.RejectModel
+@{
+    ViewData["Title"] = "Reject";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="accommodation">
+    <h2 class="border-bottom">@Model.Accommodation.Name</h2>
+    <img src="@Model.Accommodation.ImagePath" class="img-fluid" />
+    <blockquote>@Model.Accommodation.Description</blockquote>
+</div>
+
+@if (Model.Message != null)
+{
+    <div class="alert alert-success my-5" role="alert">
+        @Model.Message
+    </div>
+}
+else
+{
+    <form method="post" asp-page="/Property/Reject" asp-route-id="@Model.Accommodation.AccommodationID" class="p-5">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="mb-3 pb-3">
+            <label asp-for="Reason"></label>
+            <textarea asp-for="Reason" class="form-control"></textarea>
+            <span asp-validation-for="Reason" class="text-danger"></span>
+        </div>
+
+        <button type="submit" value="Reject" class="btn btn-danger btn-lg btn-block">Reject</button>
+    </form>
+}
+
+
