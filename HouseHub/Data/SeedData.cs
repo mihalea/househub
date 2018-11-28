@@ -30,6 +30,9 @@ namespace HouseHub.Data
                     var landlordID = await EnsureUser(serviceProvider, testUserPw, "lord@soton.ac.uk");
                     await EnsureRole(serviceProvider, landlordID, Constants.LandlordRole);
 
+                    var userID = await EnsureUser(serviceProvider, testUserPw, "user@soton.ac.uk");
+                    await EnsureRole(serviceProvider, userID, Constants.DefaultRole);
+
                     SeedDatabase(context, adminID);
                 }
                 catch (Exception e)
@@ -72,7 +75,7 @@ namespace HouseHub.Data
                 {
                     UserName = UserName,
                     Email = UserName,
-                    Phone = "07492334876",
+                    PhoneNumber = "07492334876",
                     Name = "Ben Dover"
                 };
                 await userManager.CreateAsync(user, testUserPw);

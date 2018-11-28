@@ -21,5 +21,6 @@ namespace HouseHub
         public static readonly string AdminRole = "Admin";
         public static readonly string OfficerRole = "Officer";
         public static readonly string LandlordRole = "Landlord";
+        public static readonly string DefaultRole = "Default";
     }
 }
