@@ -39,10 +39,11 @@ namespace HouseHub.Pages.Property
             Accommodation.Pending = false;
             await Context.SaveChangesAsync();
 
-            Message = "Property \"" + Accommodation.Name + "\" has been approved";
+            
             AccommodationList = await Context.Accommodation.Where(a => a.Pending == true).ToListAsync();
 
-            return Page();
+            TempData["Message"] = "Property \"" + Accommodation.Name + "\" has been approved";
+            return RedirectToPage("/Property/Approve");
         }
     }
 }

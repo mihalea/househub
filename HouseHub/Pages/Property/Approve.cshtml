@@ -7,12 +7,7 @@
 
 <h1 class="mb-3">Pending properties</h1>
 
-@if (Model.Message != null)
-{
-    <div class="alert alert-success my-5" role="alert">
-        @Model.Message
-    </div>
-}
+<partial name="_StatusMessage"/>
 
 <form class="row" method="post">
     @foreach (var item in Model.AccommodationList)
