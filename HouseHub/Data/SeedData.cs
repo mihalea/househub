@@ -19,17 +19,23 @@ namespace HouseHub.Data
 
                 // dotnet user-secrets set SeedUserPW <pw>
 
+                try
+                {
+                    var adminID = await EnsureUser(serviceProvider, testUserPw, "admin@soton.ac.uk");
+                    await EnsureRole(serviceProvider, adminID, Constants.AdminRole);
 
-                var adminID = await EnsureUser(serviceProvider, testUserPw, "admin@soton.ac.uk");
-                await EnsureRole(serviceProvider, adminID, Constants.AdminRole);
+                    var officerID = await EnsureUser(serviceProvider, testUserPw, "officer@soton.ac.uk");
+                    await EnsureRole(serviceProvider, officerID, Constants.OfficerRole);
 
-                var officerID = await EnsureUser(serviceProvider, testUserPw, "officer@soton.ac.uk"); 
-                await EnsureRole(serviceProvider, officerID, Constants.OfficerRole);
+                    var landlordID = await EnsureUser(serviceProvider, testUserPw, "lord@soton.ac.uk");
+                    await EnsureRole(serviceProvider, landlordID, Constants.LandlordRole);
 
-                var landlordID = await EnsureUser(serviceProvider, testUserPw, "lord@soton.ac.uk");
-                await EnsureRole(serviceProvider, landlordID, Constants.LandlordRole);
-
-                SeedDatabase(context, adminID);
+                    SeedDatabase(context, adminID);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
             }
         }
 
@@ -57,12 +63,18 @@ namespace HouseHub.Data
         private static async Task<string> EnsureUser(IServiceProvider serviceProvider,
             string testUserPw, string UserName)
         {
-            var userManager = serviceProvider.GetService<UserManager<IdentityUser>>();
+            var userManager = serviceProvider.GetService<UserManager<ApplicationUser>>();
 
             var user = await userManager.FindByNameAsync(UserName);
             if (user == null)
             {
-                user = new IdentityUser { UserName = UserName };
+                user = new ApplicationUser
+                {
+                    UserName = UserName,
+                    Email = UserName,
+                    Phone = "07492334876",
+                    Name = "Ben Dover"
+                };
                 await userManager.CreateAsync(user, testUserPw);
             }
 
@@ -85,7 +97,7 @@ namespace HouseHub.Data
                 IR = await roleManager.CreateAsync(new IdentityRole(role));
             }
 
-            var userManager = serviceProvider.GetService<UserManager<IdentityUser>>();
+            var userManager = serviceProvider.GetService<UserManager<ApplicationUser>>();
 
             var user = await userManager.FindByIdAsync(uid);
 
