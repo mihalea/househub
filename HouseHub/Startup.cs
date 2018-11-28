@@ -55,7 +55,14 @@ namespace HouseHub
             services.AddMvc()
                 .AddRazorPagesOptions(options =>
                 {
-                    options.Conventions.AuthorizePage("/Add", new [] {Constants.AdminRole});
+                    options.Conventions.AuthorizePage("/Property/Create",
+                        new [] {Constants.AdminRole, Constants.LandlordRole});
+                    options.Conventions.AuthorizePage("/Property/Index", 
+                        new [] {Constants.AdminRole, Constants.LandlordRole});
+                    options.Conventions.AuthorizePage("/Property/Approve",
+                        new [] {Constants.AdminRole, Constants.OfficerRole});
+                    options.Conventions.AuthorizePage("/Property/Reject", 
+                        new [] {Constants.AdminRole, Constants.OfficerRole});
                 })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
