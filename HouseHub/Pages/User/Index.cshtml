@@ -1,0 +1,21 @@
+﻿@page
+@model HouseHub.Pages.User.ManageModel
+@{
+    ViewData["Title"] = "Manage";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h2>Manage</h2>
+
+
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <form method="post" enctype="multipart/form-data" class="p-5">
+            <div class="mb-3">
+                <label name="Username">Username</label>
+                <select asp-for="Users" asp-items="Model.Users" class="form-control"></select>
+            </div>
+            <button type="submit" value="Create" class="btn btn-primary btn-lg btn-block">View Profile</button>
+        </form>
+    </div>
+</div>
