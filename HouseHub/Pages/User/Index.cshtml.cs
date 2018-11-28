@@ -18,6 +18,7 @@ namespace HouseHub.Pages.User
     {
         [BindProperty] public IList<SelectListItem> Users { get; set; }
         [BindProperty] public IList<SelectListItem> Roles { get; set; }
+        [BindProperty] public String Message { get; set; }
 
         private RoleManager<IdentityRole> RoleManager;
 
@@ -68,8 +69,13 @@ namespace HouseHub.Pages.User
                 var currentRoles = await UserManager.GetRolesAsync(user);
                 await UserManager.RemoveFromRolesAsync(user, currentRoles);
                 await UserManager.AddToRoleAsync(user, Roles);
-                
+                TempData["Message"] = "Successfully changed " + user.Name + "'s role to " + Roles;
             }
+            else
+            {
+                TempData["Message"] = "Error: Failed to change role";
+            }
+
 
             return RedirectToPage("/User/Index");
         }
