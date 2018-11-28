@@ -21,4 +21,8 @@
     <Folder Include="wwwroot\fonts\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\js\filechooser.js" />
+  </ItemGroup>
+
 </Project>

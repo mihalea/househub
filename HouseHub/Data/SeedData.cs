@@ -46,7 +46,8 @@ namespace HouseHub.Data
                 {
                     Name = "Burgess Road " + new Random().Next(100),
                     Description = "The greatest place on earth can be found right here at our house",
-                    ImagePath = "/Uploads/pusheen.png"
+                    ImagePath = "/Uploads/pusheen.png",
+                    OwnerID = adminID
                 });
             }
 

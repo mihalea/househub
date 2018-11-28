@@ -17,6 +17,7 @@ namespace HouseHub.Model
         public bool Approved { get; set; }
         public bool Pending { get; set; }
         public string Reason { get; set; }
+        public string OwnerID { get; set; }
 
         public Accommodation()
         {

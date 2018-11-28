@@ -51,12 +51,13 @@ namespace HouseHub.Pages
             
             var fileName = DateTime.UtcNow.ToString("yyyyMMdd-THHmmss-") + ImageFile.FileName;
             var path = Path.Combine(_environment.ContentRootPath, "Uploads", fileName);
-            var shortPath = Path.Combine("Uploads", fileName);
+            var shortPath = Path.Combine("/Uploads", fileName);
             var accommodation = new Accommodation
             {
                 Name = Name,
                 Description = Description,
-                ImagePath = shortPath
+                ImagePath = shortPath,
+                OwnerID = UserManager.GetUserAsync(User).Result.Id
             };
 
             var isAuthorised = await AuthorizationService.AuthorizeAsync(User, accommodation, Operations.Create);

@@ -1,0 +1,65 @@
+﻿@page
+@model HouseHub.Pages.Property.PendingModel
+@{
+    ViewData["Title"] = "Pending";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+@if (Model.Rejected.Count > 0)
+{
+    <h2>Rejected Properties<span class="badge badge-secondary mx-3">@Model.Rejected.Count</span></h2>
+
+    <div class="row">
+        @foreach (var item in Model.Rejected)
+        {
+        <article class="col-md-4 pb-5">
+            <h4 class="border-bottom pb-2">
+                <a href="#" class="text-dark">@Html.DisplayFor(modelItem => item.Name)</a>
+            </h4>
+            <p>@Html.DisplayFor(modelItem => item.Description)</p>
+
+            <img src="@item.ImagePath" class="img-fluid" />
+
+            <div class="alert alert-warning my-3" role="alert">
+                Reason: @Html.DisplayFor(modelItem => item.Reason)
+            </div>
+        </article>
+        }
+    </div>
+}
+
+@if (Model.Pending.Count > 0)
+{
+    <h2>Pending properties<span class="badge badge-secondary mx-3">@Model.Pending.Count</span></h2>
+
+    <div class="row">
+        @foreach (var item in Model.Pending)
+        {
+            <article class="col-md-4 pb-5">
+                <h4 class="border-bottom pb-2">
+                    <a href="#" class="text-dark">@Html.DisplayFor(modelItem => item.Name)</a>
+                </h4>
+                <p>@Html.DisplayFor(modelItem => item.Description)</p>
+                <img src="@item.ImagePath" class="img-fluid" />
+            </article>
+        }
+    </div>
+}
+
+@if (Model.Approved.Count > 0)
+{
+    <h2>Approved properties<span class="badge badge-secondary mx-3">@Model.Approved.Count</span></h2>
+
+    <div class="row">
+        @foreach (var item in Model.Approved)
+        {
+            <article class="col-md-4 pb-5">
+                <h4 class="border-bottom pb-2">
+                    <a href="#" class="text-dark">@Html.DisplayFor(modelItem => item.Name)</a>
+                </h4>
+                <p>@Html.DisplayFor(modelItem => item.Description)</p>
+                <img src="@item.ImagePath" class="img-fluid" />
+            </article>
+        }
+    </div>
+}

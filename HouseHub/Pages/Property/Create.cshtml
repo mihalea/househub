@@ -13,7 +13,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="mb-3">
                 <label asp-for="Name"></label>
-                <input asp-for="Name" class="form-control"/>
+                <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="mb-3 pb-3">
@@ -22,8 +22,12 @@
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             <div class="mb-3 custom-file pb-5">
-                <label asp-for="ImageFile" class="custom-file-label"></label>
-                <input asp-for="ImageFile" class="custom-file-input" />
+                <div class="custom-file mb-3 pb-5">
+                    <input asp-for="ImageFile" class="custom-file-input" aria-describedby="fileHelp">
+                    <label asp-for="ImageFile" class="custom-file-label">
+                        Select file...
+                    </label>
+                </div>
 
                 <span asp-validation-for="ImageFile" class="text-danger"></span>
             </div>
@@ -32,7 +36,10 @@
     </div>
 </div>
 
-
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script src="~/js/filechooser.js" asp-append-version="true"></script>
 }
+
+
