@@ -21,7 +21,7 @@ namespace HouseHub.Pages
             IHostingEnvironment environment,
             ApplicationDbContext context,
             IAuthorizationService authorizationService,
-            UserManager<IdentityUser> userManager) : base(context, authorizationService, userManager)
+            UserManager<ApplicationUser> userManager) : base(context, authorizationService, userManager)
         {
             _environment = environment;
         }

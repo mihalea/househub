@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using HouseHub.Data;
+using HouseHub.Model;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -14,11 +15,11 @@ namespace HouseHub.Pages
     {
         protected ApplicationDbContext Context { get; }
         protected IAuthorizationService AuthorizationService { get; }
-        protected UserManager<IdentityUser> UserManager { get; }
+        protected UserManager<ApplicationUser> UserManager { get; }
 
         public BasePageModel(ApplicationDbContext context,
             IAuthorizationService authorizationService,
-            UserManager<IdentityUser> userManager)
+            UserManager<ApplicationUser> userManager)
         {
             Context = context;
             AuthorizationService = authorizationService;

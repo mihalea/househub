@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using HouseHub.Data;
+using HouseHub.Model;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -12,12 +13,12 @@ namespace HouseHub.Pages.User
 {
     public class ViewModel : BasePageModel
     {
-        [BindProperty] public IdentityUser FormUser { get; set; }
+        [BindProperty] public ApplicationUser FormUser { get; set; }
 
         public ViewModel(
             ApplicationDbContext context,
             IAuthorizationService authorizationService,
-            UserManager<IdentityUser> userManager) : base(context, authorizationService, userManager)
+            UserManager<ApplicationUser> userManager) : base(context, authorizationService, userManager)
         {
         }
 

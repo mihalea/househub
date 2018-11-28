@@ -1,5 +1,6 @@
 ﻿using System;
 using HouseHub.Data;
+using HouseHub.Model;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;

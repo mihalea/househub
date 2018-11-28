@@ -22,7 +22,7 @@ namespace HouseHub.Pages.Property
         public PendingModel(
             ApplicationDbContext context, 
             IAuthorizationService authorizationService, 
-            UserManager<IdentityUser> userManager) : base(context, authorizationService, userManager)
+            UserManager<ApplicationUser> userManager) : base(context, authorizationService, userManager)
         {
         }
 
