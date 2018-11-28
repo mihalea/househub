@@ -28,18 +28,29 @@
                 <a class="nav-link" asp-page="/Index">Home</a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link" asp-page="/Property/Create">Add Property</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" asp-page="/Property/Approve">Approve Properties</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" asp-page="/Property/Index">My Properties</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" asp-page="/User/Index">Users</a>
-            </li>
+            @if (User.IsInRole(Constants.AdminRole) || User.IsInRole(Constants.OfficerRole))
+            {
+                <li class="nav-item">
+                    <a class="nav-link" asp-page="/Property/Approve">Approve Properties</a>
+                </li>
+            }
+            
+            @if (User.IsInRole(Constants.AdminRole) || User.IsInRole(Constants.LandlordRole))
+            {
+                <li class="nav-item">
+                    <a class="nav-link" asp-page="/Property/Create">Add Property</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-page="/Property/Index">My Properties</a>
+                </li>
+            }
+
+            @if (User.IsInRole(Constants.AdminRole))
+            {
+                <li class="nav-item">
+                    <a class="nav-link" asp-page="/User/Index">Users</a>
+                </li>
+            }
 
         </ul>
         <partial name="_LoginPartial" />
@@ -51,10 +62,9 @@
 
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; 2018 - HouseHub</p>
-        </footer>
+        @* <footer> *@
+        @*     <p>&copy; 2018 - HouseHub</p> *@
+        @* </footer> *@
     </div>
 
     <script src="~/js/vendor.min.js" asp-append-version="true"></script>
