@@ -5,12 +5,18 @@
 <div class="row">
     @foreach (var item in Model)
     {
-        <article class="col-md-4 pb-5">
+        <section method="post" class="col-md-4 pb-5">
             <h4 class="border-bottom pb-2">
                 <a href="#" class="text-dark">@Html.DisplayFor(modelItem => item.Name)</a>
                 <div class="float-right approve-buttons">
-                    <a asp-page="/Property/Delete" asp-route-id="@item.AccommodationID">
-                        <span class="oi oi-x mx-2 text-danger" title="Delete" aria-hidden="true"></span>
+                    @* <a asp-page="/Property/Delete" asp-route-id="@item.AccommodationID"> *@
+                    @*     <span class="oi oi-x mx-2 text-danger" title="Delete" aria-hidden="true"></span> *@
+                    @* </a> *@
+                    <a tabindex="0" class="btn btn-sm btn-warning" role="button" id="delete"
+                       data-toggle="popover" data-trigger="focus" data-placement="top"
+                       data-content='<p class="text-center">Are you sure you want to permamently delete your property?</p><br /><form method="post">@Html.AntiForgeryToken()<button class="btn btn-danger btn-block" type="submit" name="id" value="@item.AccommodationID">Delete</button></form>'
+                       title="Delete item">
+                        Delete
                     </a>
                 </div>
             </h4>
@@ -24,7 +30,7 @@
                     Reason: @Html.DisplayFor(modelItem => item.Reason)
                 </div>
             }
-        </article>
+        </section>
     }
 </div>
 

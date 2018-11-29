@@ -41,5 +41,18 @@ namespace HouseHub.Pages.Property
                 .ToListAsync();
 
         }
+
+        public async Task<IActionResult> OnPostAsync(int id)
+        {
+            Context.Accommodation.Remove(new Accommodation
+            {
+                AccommodationID = id
+            });
+            await Context.SaveChangesAsync();
+
+            TempData["Message"] = "Successfully deleted property";
+
+            return RedirectToPage("/Property/Index");
+        }
     }
 }
