@@ -6,4 +6,24 @@ $(function () {
     $('#delete[data-toggle="popover"]').popover({
         html: true
     });
+
+    $('#search').hideseek({
+        headers: ".header",
+        nodata: 'No results found',
+        ignore: '.ignore',
+    });
+
+    $('.custom-file-input').on('change', function (e) {
+        var fileName = e.target.files[0].name;
+        $(this).next('.custom-file-label').html(fileName);
+    })
+    $('body').on('click', function (e) {
+        $('[data-toggle="popover"]').each(function () {
+            if (!$(this).is(e.target) &&
+                $(this).has(e.target).length === 0 &&
+                $('.popover').has(e.target).length === 0) {
+                $(this).popover('hide');
+            }
+        });
+    });
 })

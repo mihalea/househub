@@ -22,7 +22,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\js\filechooser.js" />
+    <Content Update="Pages\User\_ListUsers.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
   </ItemGroup>
 
 </Project>

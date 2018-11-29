@@ -1,4 +1,6 @@
 ﻿@page
+
+@using HouseHub.Model
 @model HouseHub.Pages.User.ManageModel
 @{
     ViewData["Title"] = "Manage users";
@@ -7,22 +9,24 @@
 
 
 
-
-<div class="row">
-    <div class="col-md-6 offset-md-3">
-        <h2 class="pb-2 border-bottom">Manage users</h2>
-        <partial name="_StatusMessage" />
-        <form method="post" enctype="multipart/form-data" class="p-5">
-            <div class="mb-3">
-                <label name="Username">Username</label>
-                <select asp-for="Users" asp-items="Model.Users" class="form-control"></select>
-            </div>
-
-            <div class="mb-3">
-                <label name="Roles">Role</label>
-                <select asp-for="Roles" asp-items="Model.Roles" class="form-control"></select>
-            </div>
-            <button type="submit" value="Create" class="btn btn-primary btn-lg btn-block">Change role</button>
-        </form>
+<section>
+    <div class="input-group mb-2">
+        <div class="input-group-prepend">
+            <div class="input-group-text">Search users</div>
+        </div>
+        <input type="text" class="form-control" id="search" data-list=".list" placeholder="Name or Email">
     </div>
-</div>
+    
+    <partial name="_StatusMessage"/>
+
+    <div class="list row">
+        @await Html.PartialAsync("_ListUsers", new UserMap(Constants.AdminRole, Model.RoleSelects, Model.Users))
+        @await Html.PartialAsync("_ListUsers", new UserMap(Constants.OfficerRole, Model.RoleSelects, Model.Users))
+        @await Html.PartialAsync("_ListUsers", new UserMap(Constants.LandlordRole, Model.RoleSelects, Model.Users))
+        @await Html.PartialAsync("_ListUsers", new UserMap(Constants.DefaultRole, Model.RoleSelects, Model.Users))
+    </div>
+</section>
+
+@section Scripts {
+    <script src="~/js/jquery.hideseek.min.js" asp-append-version="true"></script>
+}

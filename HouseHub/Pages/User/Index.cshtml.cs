@@ -16,8 +16,9 @@ namespace HouseHub.Pages.User
 {
     public class ManageModel : BasePageModel
     {
-        [BindProperty] public IList<SelectListItem> Users { get; set; }
-        [BindProperty] public IList<SelectListItem> Roles { get; set; }
+        [BindProperty] public IDictionary<string, IList<ApplicationUser>> Users { get; set; }
+        [BindProperty] public IList<String> Roles { get; set; }
+        [BindProperty] public IList<SelectListItem> RoleSelects{ get; set; }
         [BindProperty] public String Message { get; set; }
 
         private RoleManager<IdentityRole> RoleManager;
@@ -29,6 +30,7 @@ namespace HouseHub.Pages.User
             RoleManager<IdentityRole> roleManager) : base(context, authorizationService, userManager)
         {
             RoleManager = roleManager;
+            Users = new Dictionary<string, IList<ApplicationUser>>();
         }
 
         public async Task OnGetAsync()
@@ -38,41 +40,35 @@ namespace HouseHub.Pages.User
                 .Where(u => u.Id != currentUser.Id)
                 .ToListAsync();
 
-            Users = new List<SelectListItem>();
-            foreach (var user in rawUsers)
-            {
-                var roles = await UserManager.GetRolesAsync(user);
-                StringBuilder builder = new StringBuilder();
-                builder.Append(" [");
-                bool hasItems = false;
-                foreach (var role in roles)
-                {
-                    if (hasItems)
-                    {
-                        builder.Append(", ");
-                    }
-                    builder.Append(role);
-                    hasItems = true;
-                }
 
-                builder.Append("]");
-                Users.Add(new SelectListItem{Text = user.UserName + builder.ToString(), Value = user.Id});
-            }
-            Roles = await RoleManager.Roles
+            RoleSelects = await RoleManager.Roles
                 .Select(r => new SelectListItem {Text = r.Name, Value = r.Name})
                 .ToListAsync();
+
+            Roles = await RoleManager.Roles
+                .Select(r => r.Name)
+                .ToListAsync();
+
+            foreach (var role in RoleManager.Roles)
+            {
+                var users = await UserManager.GetUsersInRoleAsync(role.Name);
+                users.Remove(currentUser);
+
+                Users[role.Name] = users;
+            }
+            
         }
 
-        public async Task<IActionResult> OnPostAsync(String Users, String Roles)
+        public async Task<IActionResult> OnPostAsync(String user, String Roles)
         {
             var exists = await RoleManager.RoleExistsAsync(Roles);
-            var user = await UserManager.FindByIdAsync(Users);
+            var appUser = await UserManager.FindByIdAsync(user);
             if (exists && user != null)
             {
-                var currentRoles = await UserManager.GetRolesAsync(user);
-                await UserManager.RemoveFromRolesAsync(user, currentRoles);
-                await UserManager.AddToRoleAsync(user, Roles);
-                TempData["Message"] = "Successfully changed " + user.Name + "'s role to " + Roles;
+                var currentRoles = await UserManager.GetRolesAsync(appUser);
+                await UserManager.RemoveFromRolesAsync(appUser, currentRoles);
+                await UserManager.AddToRoleAsync(appUser, Roles);
+                TempData["Message"] = "Successfully changed " + appUser.Name + "'s role to " + Roles;
             }
             else
             {

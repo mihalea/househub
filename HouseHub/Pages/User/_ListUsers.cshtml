@@ -1,0 +1,52 @@
+﻿@using HouseHub.Model
+@model UserMap
+
+@if (Model.Users.Count > 0)
+{
+    <h4 class="header my-3 col-md-12">@Model.Role</h4>
+    @foreach (var user in Model.Users)
+    {
+        <li class="list-group-item col-md-12">
+            <a class="text-primary" data-toggle="collapse" href="#collapse-@user.Id"
+               role="button" aria-expanded="false" aria-controls="collapse-@user.Id">
+                @user.Name - @user.Email
+            </a>
+        </li>
+        <div class="collapse ignore"  id="collapse-@user.Id">
+            <li class="list-group-item col-md-12">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h4>
+                            User details
+                        </h4>
+                        <dl class="row">
+                            <dt class="col-md-3">Name: </dt>
+                            <dd class="col-md-9">@user.Name</dd>
+
+                            <dt class="col-md-3">Email: </dt>
+                            <dd class="col-md-9">@user.Email</dd>
+
+                            <dt class="col-md-3">Phone: </dt>
+                            <dd class="col-md-9">@user.PhoneNumber</dd>
+
+                            <dt class="col-md-3">Role: </dt>
+                            <dd class="col-md-9">@Model.Role</dd>
+                        </dl>
+                    </div>
+                    <div class="col-md-4">
+                        <h4>
+                            Change role
+                        </h4>
+                        
+                        <form method="post">
+                            <select asp-for="Roles" asp-items="Model.Roles" class="form-control"></select>
+                            <input type="hidden" name="user" value="@user.Id"/>
+                            <button type="submit" value="Create" class="btn btn-primary btn-lg btn-block my-2">Apply</button>
+                        </form>
+                    </div>
+                </div>
+            </li>
+        </div>
+    }
+}
+
