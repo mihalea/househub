@@ -30,8 +30,12 @@ namespace HouseHub.Data
                     var landlordID = await EnsureUser(serviceProvider, testUserPw, "lord@soton.ac.uk");
                     await EnsureRole(serviceProvider, landlordID, Constants.LandlordRole);
 
-                    var userID = await EnsureUser(serviceProvider, testUserPw, "user@soton.ac.uk");
-                    await EnsureRole(serviceProvider, userID, Constants.DefaultRole);
+                    Random random = new Random();
+                    for (int i = 0; i < 50; i++)
+                    {
+                        var userID = await EnsureUser(serviceProvider, testUserPw, "user" + random.Next(100,999)  + "@soton.ac.uk");
+                        await EnsureRole(serviceProvider, userID, Constants.DefaultRole);
+                    }
 
                     SeedDatabase(context, adminID);
                 }
