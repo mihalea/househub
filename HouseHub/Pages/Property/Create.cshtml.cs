@@ -32,6 +32,7 @@ namespace HouseHub.Pages
             public IFormFile ImageFile { get; set; }
             [Required]
             [MinLength(3)]
+            [StringLength(50)]
             public string Name { get; set; }
             [Required]
             [Display(Name = "Short description (max 180 chars)")]
@@ -39,6 +40,7 @@ namespace HouseHub.Pages
             public string ShortDescription { get; set; }
             [Required]
             [StringLength(2000)]
+            [DataType(DataType.MultilineText)]
             public string Description { get; set; }
         }
 

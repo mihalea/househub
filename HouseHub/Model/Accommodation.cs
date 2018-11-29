@@ -13,6 +13,7 @@ namespace HouseHub.Model
         public int AccommodationID { get; set; }
         public string Name { get; set; }
         public string ShortDescription { get; set; }
+        [DataType(DataType.MultilineText)]
         public string Description { get; set; }
         public string ImagePath { get; set; }
         public bool Approved { get; set; }

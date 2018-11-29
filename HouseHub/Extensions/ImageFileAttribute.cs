@@ -28,7 +28,7 @@ namespace HouseHub.Extensions
             {
                 var fileName = file.FileName;
 
-                return AllowedExtensions.Any(y => fileName.EndsWith("." + y));
+                return AllowedExtensions.Any(y => fileName.ToLower().EndsWith("." + y));
             }
 
             return true;
