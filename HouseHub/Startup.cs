@@ -60,10 +60,14 @@ namespace HouseHub
                         new [] {Constants.AdminRole, Constants.LandlordRole});
                     options.Conventions.AuthorizePage("/Property/Index", 
                         new [] {Constants.AdminRole, Constants.LandlordRole});
-                    options.Conventions.AuthorizePage("/Property/Approve",
+                    options.Conventions.AuthorizePage("/Property/Review",
                         new [] {Constants.AdminRole, Constants.OfficerRole});
                     options.Conventions.AuthorizePage("/Property/Reject", 
                         new [] {Constants.AdminRole, Constants.OfficerRole});
+                    options.Conventions.AuthorizePage("/Property/Delete",
+                        new[] {Constants.AdminRole, Constants.LandlordRole});
+                    options.Conventions.AuthorizePage("/User/Index",
+                        new[] { Constants.AdminRole });
                 })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 

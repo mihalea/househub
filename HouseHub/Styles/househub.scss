@@ -16,23 +16,10 @@ article > img {
     max-height: 300px;
 }
 
-.approve-buttons {
-    span {
-        font-size: 20px;
-    }
+.navbar-brand {
+    font-weight: 500;
 
-    .oi-check {
-        color: #18BC9C;
-    }
-
-    .oi-x {
-        color: #E74C3C;
-    }
-
-    button {
-        background: none;
-        padding: 0px;
-        border: none;
-        cursor: pointer;
+    > .brand-color {
+        color: #18BC8C;
     }
 }

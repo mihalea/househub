@@ -13,17 +13,7 @@ article > img {
   width: 100%;
   max-height: 300px; }
 
-.approve-buttons span {
-  font-size: 20px; }
-
-.approve-buttons .oi-check {
-  color: #18BC9C; }
-
-.approve-buttons .oi-x {
-  color: #E74C3C; }
-
-.approve-buttons button {
-  background: none;
-  padding: 0px;
-  border: none;
-  cursor: pointer; }
+.navbar-brand {
+  font-weight: 500; }
+  .navbar-brand > .brand-color {
+    color: #18BC8C; }

@@ -18,36 +18,36 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-md navbar-dark bg-primary mb-4">
-    <a class="navbar-brand" asp-page="/Index">HouseHub</a>
+    <a class="navbar-brand" asp-page="/Index"><span class="oi oi-home mr-2" title="icon name" aria-hidden="true"></span><span class="brand-color">House</span>Hub</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
+            <li class="nav-item @_Layout.IndexNavClass(ViewContext)">
                 <a class="nav-link" asp-page="/Index">Home</a>
             </li>
 
             @if (User.IsInRole(Constants.AdminRole) || User.IsInRole(Constants.OfficerRole))
             {
-                <li class="nav-item">
-                    <a class="nav-link" asp-page="/Property/Approve">Approve Properties</a>
+                <li class="nav-item @_Layout.ReviewNavClass(ViewContext)">
+                    <a class="nav-link" asp-page="/Property/Review">Review Properties</a>
                 </li>
             }
             
             @if (User.IsInRole(Constants.AdminRole) || User.IsInRole(Constants.LandlordRole))
             {
-                <li class="nav-item">
+                <li class="nav-item @_Layout.CreateNavClass(ViewContext)">
                     <a class="nav-link" asp-page="/Property/Create">Add Property</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item @_Layout.ListNavClass(ViewContext)">
                     <a class="nav-link" asp-page="/Property/Index">My Properties</a>
                 </li>
             }
 
             @if (User.IsInRole(Constants.AdminRole))
             {
-                <li class="nav-item">
+                <li class="nav-item @_Layout.UsersNavClass(ViewContext)">
                     <a class="nav-link" asp-page="/User/Index">Users</a>
                 </li>
             }

@@ -5,33 +5,41 @@
     ViewData["Title"] = "Add";
 }
 
-<h4>Add Accommodation</h4>
-<hr />
+
 <div class="row">
     <div class="col-md-6 offset-md-3">
+        <h4 class="pb-2 border-bottom">Add Property</h4>
+
         <form method="post" enctype="multipart/form-data" class="p-5">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="mb-3">
-                <label asp-for="Name"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+                <label asp-for="Input.Name"></label>
+                <input asp-for="Input.Name" class="form-control" />
+                <span asp-validation-for="Input.Name" class="text-danger"></span>
             </div>
             <div class="mb-3 pb-3">
-                <label asp-for="Description"></label>
-                <textarea asp-for="Description" class="form-control"></textarea>
-                <span asp-validation-for="Description" class="text-danger"></span>
+                <label asp-for="Input.ShortDescription"></label>
+                <textarea asp-for="Input.ShortDescription" class="form-control"></textarea>
+                <span asp-validation-for="Input.ShortDescription" class="text-danger"></span>
             </div>
-            <div class="mb-3 custom-file pb-5">
-                <div class="custom-file mb-3 pb-5">
-                    <input asp-for="ImageFile" class="custom-file-input" aria-describedby="fileHelp">
-                    <label asp-for="ImageFile" class="custom-file-label">
+            <div class="mb-3 pb-3">
+                <label asp-for="Input.Description"></label>
+                <textarea asp-for="Input.Description" class="form-control"></textarea>
+                <span asp-validation-for="Input.Description" class="text-danger"></span>
+            </div>
+            <div class="mb-3 custom-file pb-3">
+                <label>Image file</label>
+                <div class="custom-file">
+
+                    <input asp-for="Input.ImageFile" class="custom-file-input" aria-describedby="fileHelp">
+                    <label asp-for="Input.ImageFile" class="custom-file-label">
                         Select file...
                     </label>
                 </div>
 
-                <span asp-validation-for="ImageFile" class="text-danger"></span>
+                <span asp-validation-for="Input.ImageFile" class="text-danger"></span>
             </div>
-            <button type="submit" value="Create" class="btn btn-primary btn-lg btn-block">Add</button>
+            <button type="submit" value="Create" class="btn btn-primary btn-lg btn-block my-5">Add</button>
         </form>
     </div>
 </div>

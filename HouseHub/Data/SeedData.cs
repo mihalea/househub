@@ -54,7 +54,24 @@ namespace HouseHub.Data
                 context.Accommodation.Add(new Accommodation
                 {
                     Name = "Burgess Road " + new Random().Next(100),
-                    Description = "The greatest place on earth can be found right here at our house",
+                    ShortDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
+                    Description = "   An opportunity to purchase this end terrace ex-local authority property located in the village of Rhosgadfan. The deceptively spacious accommodation is fully double glazed and has been extended by the present owners. In brief the property benefits from entrance hall, living room, lounge and kitchen to the ground floor and four bedrooms and a bathroom to the first floor landing. The property does require some modernisation work. Outside: Front and rear lawn garden with a timber shed and coal shed. Magnificent view from the back garden towards neighbouring countryside and the coast.  " +
+                                  "     " +
+                                  " \n  Extended end terrace ex-local authority property  " +
+                                  "   Two reception rooms and kitchen  " +
+                                  "   four bedrooms and bathroom  " +
+                                  "   in need of some modernisation work  " +
+                                  "   fully double glazed  " +
+                                  "   front and rear garden  " +
+                                  "   views  " +
+                                  "     " +
+                                  "     " +
+                                  "     " +
+                                  "   Entrance hall x .  " +
+                                  "     " +
+                                  "   Living room 10\"5\" x 11\"10\"(3.18m x 3.6m).  "  + 
+                                "     " +
+                                "  Outside x . Front and rear lawn garden. To the rear there are distant coastal views.   ",
                     ImagePath = "/Uploads/pusheen.png",
                     OwnerID = adminID
                 });

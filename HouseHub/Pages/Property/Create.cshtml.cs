@@ -10,9 +10,11 @@ using HouseHub.Data;
 using HouseHub.Model;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using HouseHub.Extensions;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+
 
 namespace HouseHub.Pages
 {
@@ -20,9 +22,25 @@ namespace HouseHub.Pages
     {
         private readonly IHostingEnvironment _environment;
 
-        [BindProperty][Display(Name="Image")] public IFormFile ImageFile { get; set; }
-        [BindProperty] public string Name { get; set; }
-        [BindProperty] public string Description { get; set; }
+        [BindProperty] public FormData Input { get; set; }
+
+        public class FormData
+        {
+            [Required]
+            [Display(Name = "Image")]
+            [ImageFile]
+            public IFormFile ImageFile { get; set; }
+            [Required]
+            [MinLength(3)]
+            public string Name { get; set; }
+            [Required]
+            [Display(Name = "Short description (max 180 chars)")]
+            [StringLength(180)]
+            public string ShortDescription { get; set; }
+            [Required]
+            [StringLength(2000)]
+            public string Description { get; set; }
+        }
 
         public AddModel(
             IHostingEnvironment environment,
@@ -39,23 +57,21 @@ namespace HouseHub.Pages
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(string Name, string Description)
+        public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
-           
-
-            
-            var fileName = DateTime.UtcNow.ToString("yyyyMMdd-THHmmss-") + ImageFile.FileName;
+            var fileName = DateTime.UtcNow.ToString("yyyyMMdd-THHmmss-") + Input.ImageFile.FileName;
             var path = Path.Combine(_environment.ContentRootPath, "Uploads", fileName);
             var shortPath = Path.Combine("/Uploads", fileName);
             var accommodation = new Accommodation
             {
-                Name = Name,
-                Description = Description,
+                Name = Input.Name,
+                ShortDescription = Input.ShortDescription,
+                Description = Input.Description,
                 ImagePath = shortPath,
                 OwnerID = UserManager.GetUserAsync(User).Result.Id
             };
@@ -66,7 +82,7 @@ namespace HouseHub.Pages
             {
                 using (var fileStream = new FileStream(path, FileMode.Create))
                 {
-                    await ImageFile.CopyToAsync(fileStream);
+                    await Input.ImageFile.CopyToAsync(fileStream);
                 }
 
                 
