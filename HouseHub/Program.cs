@@ -25,12 +25,9 @@ namespace HouseHub
                 var context = services.GetRequiredService<ApplicationDbContext>();
                 context.Database.Migrate();
 
-                // requires using Microsoft.Extensions.Configuration;
                 var config = host.Services.GetRequiredService<IConfiguration>();
-                // Set password with the Secret Manager tool.
-                // dotnet user-secrets set SeedUserPW <pw>
 
-                var testUserPw = config["SeedUserPW"];
+                var testUserPw = config["SeedPassword"];
                 try
                 {
                     SeedData.Initialize(services, testUserPw).Wait();

@@ -67,7 +67,7 @@ namespace HouseHub.Pages
             }
 
             var fileName = DateTime.UtcNow.ToString("yyyyMMdd-THHmmss-") + Input.ImageFile.FileName;
-            var path = Path.Combine(_environment.ContentRootPath, "Uploads", fileName);
+            var path = Path.Combine(_environment.ContentRootPath, "wwwroot/uploads", fileName);
             var shortPath = Path.Combine("/Uploads", fileName);
             var accommodation = new Accommodation
             {

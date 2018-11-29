@@ -7,12 +7,6 @@ $(function () {
         html: true
     });
 
-    $('#search').hideseek({
-        headers: ".header",
-        nodata: 'No results found',
-        ignore: '.ignore',
-    });
-
     $('.custom-file-input').on('change', function (e) {
         var fileName = e.target.files[0].name;
         $(this).next('.custom-file-label').html(fileName);

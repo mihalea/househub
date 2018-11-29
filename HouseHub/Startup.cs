@@ -92,11 +92,11 @@ namespace HouseHub
             app.UseStaticFiles();
             app.UseStaticFiles(new StaticFileOptions
             {
-                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Uploads")),
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads/")),
                 RequestPath = "/Uploads"
             });
 
-            app.UseCookiePolicy();
+            //app.UseCookiePolicy();
             app.UseAuthentication();
 
             app.UseMvc();

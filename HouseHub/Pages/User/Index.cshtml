@@ -30,4 +30,11 @@
 
 @section Scripts {
     <script src="~/js/jquery.hideseek.min.js" asp-append-version="true"></script>
+    <script>
+        $('#search').hideseek({
+            headers: ".header",
+            nodata: 'No results found',
+            ignore: '.ignore',
+        });
+    </script>
 }

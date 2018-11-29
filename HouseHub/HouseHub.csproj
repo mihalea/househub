@@ -6,6 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\uploads\pusheen.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="Styles\househub.scss" />
   </ItemGroup>
 
@@ -19,6 +23,10 @@
   <ItemGroup>
     <Folder Include="Areas\Identity\Services\" />
     <Folder Include="wwwroot\fonts\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\uploads\pusheen.png" />
   </ItemGroup>
 
   <ItemGroup>
