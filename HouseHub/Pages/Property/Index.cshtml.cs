@@ -17,6 +17,7 @@ namespace HouseHub.Pages.Property
         [BindProperty] public IList<Accommodation> Pending { get; set; }
         [BindProperty] public IList<Accommodation> Rejected { get; set; }
         [BindProperty] public IList<Accommodation> Approved { get; set; }
+        [BindProperty] public bool HasProperties { get; set; }
 
 
         public PendingModel(
@@ -30,6 +31,9 @@ namespace HouseHub.Pages.Property
         {
             var user = await UserManager.GetUserAsync(User);
             var owned = Context.Accommodation.Where(a => a.OwnerID == user.Id);
+
+            HasProperties = owned.Count() > 0;
+
             Pending = await owned
                 .Where(a => a.Pending == true)
                 .ToListAsync();

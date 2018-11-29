@@ -9,26 +9,38 @@
 
 <partial name="_StatusMessage"/>
 
-<form class="row" method="post">
-    @foreach (var item in Model.AccommodationList)
-    {
-        <article class="col-md-4 pb-5">
-            <h4 class="border-bottom pb-2">
-                <a href="#" class="text-dark">@Html.DisplayFor(modelItem => item.Name)</a>
-                
-                
-            </h4>
-            <p>@Html.DisplayFor(modelItem => item.ShortDescription)</p>
-            <img src="@item.ImagePath" class="img-fluid" />
-            
-            <div class="my-2">
-                <button class="btn btn-success btn-lg btn-block" type="submit" asp-route-id="@item.AccommodationID">
-                    Approve
-                </button>
-                <a class="btn btn-danger btn-lg btn-block" asp-page="/Property/Reject" asp-route-id="@item.AccommodationID">
-                    Reject
-                </a>
-            </div>
-        </article>
-    }
-</form>
+@if (Model.AccommodationList.Count > 0)
+{
+
+    <form class="row" method="post">
+        @foreach (var item in Model.AccommodationList)
+        {
+            <article class="col-md-4 pb-5">
+                <h4 class="border-bottom pb-2">
+                    <a href="#" class="text-dark">@Html.DisplayFor(modelItem => item.Name)</a>
+
+
+                </h4>
+                <p>@Html.DisplayFor(modelItem => item.ShortDescription)</p>
+                <img src="@item.ImagePath" class="img-fluid"/>
+
+                <div class="my-2">
+                    <button class="btn btn-success btn-lg btn-block" type="submit" asp-route-id="@item.AccommodationID">
+                        Approve
+                    </button>
+                    <a class="btn btn-danger btn-lg btn-block" asp-page="/Property/Reject" asp-route-id="@item.AccommodationID">
+                        Reject
+                    </a>
+                </div>
+            </article>
+        }
+    </form>
+}
+else
+{
+    <div class="card col-md-12">
+        <div class="card-body text-center">
+            <p class="lead pt-2">There are no properties pending approval. Check back in a while!</p>
+        </div>
+    </div>
+}

@@ -7,23 +7,37 @@
 
 <partial name="_StatusMessage" />
 
-@if (Model.Rejected.Count > 0)
+@if (Model.HasProperties)
 {
-    <h2>Rejected Properties<span class="badge badge-secondary m-3">@Model.Rejected.Count</span></h2>
 
-    @await Html.PartialAsync("_ListProperties", Model.Rejected)
-}
+@if (Model.Rejected.Count > 0)
+ {
+     <h2>Rejected Properties<span class="badge badge-secondary m-3">@Model.Rejected.Count</span></h2>
+
+     @await Html.PartialAsync("_ListProperties", Model.Rejected)
+ }
 
 @if (Model.Pending.Count > 0)
-{
-    <h2>Pending properties<span class="badge badge-secondary m-3">@Model.Pending.Count</span></h2>
-    @await Html.PartialAsync("_ListProperties", Model.Pending)
+ {
+     <h2>Pending properties<span class="badge badge-secondary m-3">@Model.Pending.Count</span></h2>
+     @await Html.PartialAsync("_ListProperties", Model.Pending)
 
-}
+ }
 
 @if (Model.Approved.Count > 0)
-{
-    <h2>Approved properties<span class="badge badge-secondary m-3">@Model.Approved.Count</span></h2>
+ {
+     <h2>Approved properties<span class="badge badge-secondary m-3">@Model.Approved.Count</span></h2>
 
-    @await Html.PartialAsync("_ListProperties", Model.Approved)
+     @await Html.PartialAsync("_ListProperties", Model.Approved)
+ }
+}
+else
+{
+    <div class="card col-md-12">
+        <div class="card-body text-center">
+            <p class="lead">You do not have any properties yet. Why don't you add one?</p>
+            
+            <a class="btn btn-success btn-lg" asp-page="/Property/Create">Add Property</a>
+        </div>
+    </div>
 }
