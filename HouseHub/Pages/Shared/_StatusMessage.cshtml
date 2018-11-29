@@ -5,8 +5,8 @@
 @if (!String.IsNullOrEmpty(Message))
 {
     var statusMessageClass = Message.StartsWith("Error") ? "danger" : "success";
-    <div class="alert alert-@statusMessageClass alert-dismissible my-3" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <div class="alert alert-@statusMessageClass my-3" role="alert">
+        @* <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> *@
         @Message
     </div>
 }
