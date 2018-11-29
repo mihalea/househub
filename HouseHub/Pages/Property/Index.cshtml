@@ -1,7 +1,7 @@
 ﻿@page
 @model HouseHub.Pages.Property.PendingModel
 @{
-    ViewData["Title"] = "Pending";
+    ViewData["Title"] = "My Properties";
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
@@ -9,21 +9,21 @@
 
 @if (Model.Rejected.Count > 0)
 {
-    <h2>Rejected Properties<span class="badge badge-secondary mx-3">@Model.Rejected.Count</span></h2>
+    <h2>Rejected Properties<span class="badge badge-secondary m-3">@Model.Rejected.Count</span></h2>
 
     @await Html.PartialAsync("_ListProperties", Model.Rejected)
 }
 
 @if (Model.Pending.Count > 0)
 {
-    <h2>Pending properties<span class="badge badge-secondary mx-3">@Model.Pending.Count</span></h2>
+    <h2>Pending properties<span class="badge badge-secondary m-3">@Model.Pending.Count</span></h2>
     @await Html.PartialAsync("_ListProperties", Model.Pending)
 
 }
 
 @if (Model.Approved.Count > 0)
 {
-    <h2>Approved properties<span class="badge badge-secondary mx-3">@Model.Approved.Count</span></h2>
+    <h2>Approved properties<span class="badge badge-secondary m-3">@Model.Approved.Count</span></h2>
 
     @await Html.PartialAsync("_ListProperties", Model.Approved)
 }

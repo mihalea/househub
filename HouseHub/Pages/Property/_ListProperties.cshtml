@@ -7,7 +7,7 @@
     {
         <section method="post" class="col-md-4 pb-5">
             <h4 class="border-bottom pb-2">
-                <a href="#" class="text-dark">@Html.DisplayFor(modelItem => item.Name)</a>
+                <a asp-page="/Property/View" asp-route-id="@item.AccommodationID" class="text-dark">@Html.DisplayFor(modelItem => item.Name)</a>
                 <div class="float-right approve-buttons">
                     @* <a asp-page="/Property/Delete" asp-route-id="@item.AccommodationID"> *@
                     @*     <span class="oi oi-x mx-2 text-danger" title="Delete" aria-hidden="true"></span> *@

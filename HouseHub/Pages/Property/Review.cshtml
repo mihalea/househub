@@ -1,7 +1,7 @@
 ﻿@page "{id?}"
 @model HouseHub.Pages.Property.ApproveModel
 @{
-    ViewData["Title"] = "Approve";
+    ViewData["Title"] = "Review";
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
@@ -22,7 +22,7 @@
             <img src="@item.ImagePath" class="img-fluid" />
             
             <div class="my-2">
-                <button class="btn btn-success btn-lg btn-block" type="submit"  asp-page="/Property/Approve" asp-route-id="@item.AccommodationID">
+                <button class="btn btn-success btn-lg btn-block" type="submit" asp-route-id="@item.AccommodationID">
                     Approve
                 </button>
                 <a class="btn btn-danger btn-lg btn-block" asp-page="/Property/Reject" asp-route-id="@item.AccommodationID">

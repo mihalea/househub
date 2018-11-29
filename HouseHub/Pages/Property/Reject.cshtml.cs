@@ -43,7 +43,7 @@ namespace HouseHub.Pages.Property
             {
                 Accommodation.Approved = false;
                 Accommodation.Pending = false;
-                Accommodation.Reason = WebUtility.HtmlEncode(reason);
+                Accommodation.Reason = reason;
 
                 await Context.SaveChangesAsync();
 

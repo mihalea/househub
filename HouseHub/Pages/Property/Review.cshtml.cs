@@ -43,7 +43,7 @@ namespace HouseHub.Pages.Property
             AccommodationList = await Context.Accommodation.Where(a => a.Pending == true).ToListAsync();
 
             TempData["Message"] = "Property \"" + Accommodation.Name + "\" has been approved";
-            return RedirectToPage("/Property/Approve");
+            return RedirectToPage("/Property/Review");
         }
     }
 }

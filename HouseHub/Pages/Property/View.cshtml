@@ -1,0 +1,35 @@
+﻿@page "{id}"
+@using HouseHub.Model
+@model HouseHub.Pages.Property.ViewModel
+@{
+    ViewData["Title"] = @Model.Accommodation.Name;
+}
+<div class="row">
+    <section class="col-md-8">
+        <header>
+            <h3 class="border-bottom pb-2 text-primary">@Model.Accommodation.Name</h3>
+            <p class="lead">@Model.Accommodation.ShortDescription</p>
+        </header>
+        <section>
+            <img src="@Model.Accommodation.ImagePath" class="img-fluid" />
+
+            <section>
+                <h4 class="border-bottom mt-5 mb-3">Description</h4>
+                <p>@Html.Raw(Model.Accommodation.Description.Replace(Environment.NewLine, "<br/>"))</p>
+            </section>
+        </section>
+    </section>
+    <aside class="col-md-4">
+        <h3 class="border-bottom pb-2 text-secondary">Contact</h3>
+        <dl class="row">
+            <dt class="col-md-3">Name: </dt>
+            <dd class="col-md-9">@Model.Owner.Name</dd>
+
+            <dt class="col-md-3">Email: </dt>
+            <dd class="col-md-9">@Model.Owner.Email</dd>
+
+            <dt class="col-md-3">Phone: </dt>
+            <dd class="col-md-9">@Model.Owner.PhoneNumber</dd>
+        </dl>
+    </aside>
+</div>
