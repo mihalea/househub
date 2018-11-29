@@ -33,7 +33,10 @@ namespace HouseHub.Pages.User
 
         public async Task OnGetAsync()
         {
-            var rawUsers = await UserManager.Users.ToListAsync();
+            var currentUser = await UserManager.GetUserAsync(User);
+            var rawUsers = await UserManager.Users
+                .Where(u => u.Id != currentUser.Id)
+                .ToListAsync();
 
             Users = new List<SelectListItem>();
             foreach (var user in rawUsers)
