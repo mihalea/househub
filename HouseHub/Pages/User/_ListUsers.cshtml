@@ -3,7 +3,7 @@
 
 @if (Model.Users.Count > 0)
 {
-    <h4 class="header my-3 col-md-12">@Model.Role</h4>
+    <h4 class="header my-3 col-md-12">@Model.Role <small class="badge badge-secondary ml-2">@Model.Users.Count user(s)</small></h4>
     @foreach (var user in Model.Users)
     {
         <li class="list-group-item col-md-12">
