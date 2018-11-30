@@ -43,11 +43,11 @@ namespace HouseHub.Areas.Identity.Pages.Account
             public string Email { get; set; }
 
             [Required]
+            [StringLength(50, MinimumLength = 3)]
             public string Name { get; set; }
 
-            [Required]
             [DataType(DataType.PhoneNumber)]
-            public string Phone { get; set; }
+            public String Phone { get; set; }
 
             [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
