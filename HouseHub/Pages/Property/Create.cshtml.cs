@@ -78,20 +78,17 @@ namespace HouseHub.Pages
                 OwnerID = UserManager.GetUserAsync(User).Result.Id
             };
 
-            var isAuthorised = await AuthorizationService.AuthorizeAsync(User, accommodation, Operations.Create);
 
-            if (isAuthorised.Succeeded)
+            using (var fileStream = new FileStream(path, FileMode.Create))
             {
-                using (var fileStream = new FileStream(path, FileMode.Create))
-                {
-                    await Input.ImageFile.CopyToAsync(fileStream);
-                }
-
-                
-
-                Context.Accommodation.Add(accommodation);
-                Context.SaveChanges();
+                await Input.ImageFile.CopyToAsync(fileStream);
             }
+
+            
+
+            Context.Accommodation.Add(accommodation);
+            Context.SaveChanges();
+
 
 
             return RedirectToPage("./Index");

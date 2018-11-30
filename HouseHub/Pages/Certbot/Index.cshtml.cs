@@ -53,7 +53,7 @@ namespace HouseHub.Pages
             Configuration["Certbot:Key"] = Key;
 
             TempData["Message"] = "Key has been updated";
-            return RedirectToPage("/Certbot/Update");
+            return RedirectToPage("/Certbot/Index");
         }
 
 

@@ -17,7 +17,7 @@
             }
         </small>
     </h4>
-    @foreach (var user in Model.Users)
+    foreach (var user in Model.Users)
     {
         <li class="list-group-item col-md-12">
             <a class="text-primary" data-toggle="collapse" href="#collapse-@user.Id"
@@ -25,8 +25,8 @@
                 @user.Name - @user.Email
             </a>
         </li>
-        <div class="collapse ignore"  id="collapse-@user.Id">
-            <li class="list-group-item col-md-12">
+        <div class="collapse ignore col-md-12"  id="collapse-@user.Id" style="padding: 0">
+            <li class="list-group-item">
                 <div class="row">
                     <div class="col-md-8">
                         <h4>

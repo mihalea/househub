@@ -44,10 +44,8 @@
     </div>
 </div>
 
+
+
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-
-    <script src="~/js/filechooser.js" asp-append-version="true"></script>
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
 }
-
-
