@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="wwwroot\uploads\pusheen.png" />
+    <Content Remove="wwwroot\uploads\default.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,7 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\uploads\pusheen.png" />
+    <None Include="wwwroot\uploads\default.png" />
   </ItemGroup>
 
   <ItemGroup>

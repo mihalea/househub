@@ -16,7 +16,7 @@ namespace HouseHub.Model
         public UserMap(string role, IList<SelectListItem> roles, IDictionary<String, IList<ApplicationUser>> users)
         {
             Role = role;
-            Users = users[role];
+            Users = users.ContainsKey(role) ? users[role] : null;
             Roles = roles;
         }
     }

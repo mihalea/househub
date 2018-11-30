@@ -1,7 +1,7 @@
 ﻿@using HouseHub.Model
 @model UserMap
 
-@if (Model.Users.Count > 0)
+@if (Model.Users != null && Model.Users.Count > 0)
 {
     <h4 class="header my-3 col-md-12">
         @Model.Role

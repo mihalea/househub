@@ -21,19 +21,22 @@ namespace HouseHub.Data
 
                 try
                 {
-                    var adminID = await EnsureUser(serviceProvider, testUserPw, "admin@soton.ac.uk");
+                    var adminID = await EnsureUser(serviceProvider, testUserPw, "admin@soton.ac.uk", "Mr. Administrator");
                     await EnsureRole(serviceProvider, adminID, Constants.AdminRole);
 
-                    var officerID = await EnsureUser(serviceProvider, testUserPw, "officer@soton.ac.uk");
+                    var officerID = await EnsureUser(serviceProvider, testUserPw, "officer@soton.ac.uk",
+                        "Mr. Officer");
                     await EnsureRole(serviceProvider, officerID, Constants.OfficerRole);
 
-                    var landlordID = await EnsureUser(serviceProvider, testUserPw, "lord@soton.ac.uk");
+                    var landlordID = await EnsureUser(serviceProvider, testUserPw, "lord@soton.ac.uk",
+                        "Mr. Landlord");
                     await EnsureRole(serviceProvider, landlordID, Constants.LandlordRole);
 
                     Random random = new Random();
                     for (int i = 0; i < 50; i++)
                     {
-                        var userID = await EnsureUser(serviceProvider, testUserPw, "user" + random.Next(100,999)  + "@soton.ac.uk");
+                        var userID = await EnsureUser(serviceProvider, testUserPw,
+                            "user" + random.Next(100, 999) + "@soton.ac.uk");
                         await EnsureRole(serviceProvider, userID, Constants.DefaultRole);
                     }
 
@@ -76,7 +79,7 @@ namespace HouseHub.Data
                                   "   Living room 10\"5\" x 11\"10\"(3.18m x 3.6m).  "  + 
                                 "     " +
                                 "  Outside x . Front and rear lawn garden. To the rear there are distant coastal views.   ",
-                    ImagePath = "/Uploads/pusheen.png",
+                    ImagePath = "/Uploads/default.png",
                     OwnerID = adminID
                 });
             }
@@ -85,7 +88,7 @@ namespace HouseHub.Data
         }
 
         private static async Task<string> EnsureUser(IServiceProvider serviceProvider,
-            string testUserPw, string UserName)
+            string testUserPw, string UserName, string Name)
         {
             var userManager = serviceProvider.GetService<UserManager<ApplicationUser>>();
 
@@ -96,13 +99,19 @@ namespace HouseHub.Data
                 {
                     UserName = UserName,
                     Email = UserName,
-                    PhoneNumber = "07492334876",
-                    Name = "Ben Dover"
+                    PhoneNumber = "07492557864",
+                    Name = Name
                 };
                 await userManager.CreateAsync(user, testUserPw);
             }
 
             return user.Id;
+        }
+
+        private static async Task<string> EnsureUser(IServiceProvider serviceProvider,
+            string testUserPw, string UserName)
+        {
+            return await EnsureUser(serviceProvider, testUserPw, UserName, "Chris P. Bacon");
         }
 
         private static async Task<IdentityResult> EnsureRole(IServiceProvider serviceProvider,
