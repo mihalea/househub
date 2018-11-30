@@ -1,0 +1,36 @@
+﻿@page
+@model HouseHub.Pages.CertbotModel
+
+
+@{
+    ViewData["Title"] = "Update key";
+}
+
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <h4 class="pb-2 border-bottom">Update verification key</h4>
+
+        <partial name="_StatusMessage" />
+
+        <form method="post" enctype="multipart/form-data" class="p-5">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="mb-3">
+                <label>Current Key</label>
+                <input class="form-control" name="CurrentKey" type="text" value="@Model.CurrentKey" disabled />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Key"></label>
+                <input asp-for="Key" class="form-control" />
+                <span asp-validation-for="Key" class="text-danger"></span>
+            </div>
+            <button type="submit" value="Create" class="btn btn-primary btn-lg btn-block my-5">Update</button>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

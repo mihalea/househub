@@ -51,11 +51,15 @@ namespace HouseHub
             {
                 options.LoginPath = "/Identity/Account/Login";
                 options.AccessDeniedPath = "/Identity/Account/AccessDenied";
-            }); 
+            });
 
             services.AddMvc()
                 .AddRazorPagesOptions(options =>
                 {
+                    options.Conventions.AddPageRoute(
+                        "/Certbot/Key",
+                        "/.well-known/acme-challenge/{id}"
+                    );
                     options.Conventions.AuthorizePage("/Property/Create",
                         new [] {Constants.AdminRole, Constants.LandlordRole});
                     options.Conventions.AuthorizePage("/Property/Index", 
@@ -68,6 +72,7 @@ namespace HouseHub
                         new[] {Constants.AdminRole, Constants.LandlordRole});
                     options.Conventions.AuthorizePage("/User/Index",
                         new[] { Constants.AdminRole });
+                    
                 })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
