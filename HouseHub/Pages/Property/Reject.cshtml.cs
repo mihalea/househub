@@ -18,7 +18,7 @@ namespace HouseHub.Pages.Property
     {
         [BindProperty] public Accommodation Accommodation { get; set; }
 
-        [BindProperty][Required]
+        [BindProperty][Required][StringLength(200, MinimumLength = 5)]
         public string Reason { get; set; }
         [BindProperty]
         public string Message { get; set; }
@@ -37,6 +37,11 @@ namespace HouseHub.Pages.Property
 
         public async Task<IActionResult> OnPostAsync(int id, String reason)
         {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+
             Accommodation = Context.Accommodation.Find(id);
 
             if (Accommodation != null)

@@ -35,14 +35,18 @@ namespace HouseHub.Pages.Property
         {
             Accommodation = Context.Accommodation.Find(id);
 
-            Accommodation.Approved = true;
-            Accommodation.Pending = false;
-            await Context.SaveChangesAsync();
+            if (Accommodation != null)
+            {
+                Accommodation.Approved = true;
+                Accommodation.Pending = false;
+                await Context.SaveChangesAsync();
 
-            
-            AccommodationList = await Context.Accommodation.Where(a => a.Pending == true).ToListAsync();
 
-            TempData["Message"] = "Property \"" + Accommodation.Name + "\" has been approved";
+                AccommodationList = await Context.Accommodation.Where(a => a.Pending == true).ToListAsync();
+
+                TempData["Message"] = "Property \"" + Accommodation.Name + "\" has been approved";
+            }
+
             return RedirectToPage("/Property/Review");
         }
     }

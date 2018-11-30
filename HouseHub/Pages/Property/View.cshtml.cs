@@ -26,7 +26,9 @@ namespace HouseHub.Pages.Property
         public async Task OnGetAsync(int id)
         {
             Accommodation = Context.Accommodation.Find(id);
-            Owner = await UserManager.FindByIdAsync(Accommodation.OwnerID);
+            if(Accommodation != null) {
+                Owner = await UserManager.FindByIdAsync(Accommodation.OwnerID);
+            }
         }
     }
 }
