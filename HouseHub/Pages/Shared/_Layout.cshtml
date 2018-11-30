@@ -34,7 +34,7 @@
                     <a class="nav-link" asp-page="/Property/Review">Review Properties</a>
                 </li>
             }
-            
+
             @if (User.IsInRole(Constants.AdminRole) || User.IsInRole(Constants.LandlordRole))
             {
                 <li class="nav-item @_Layout.CreateNavClass(ViewContext)">
@@ -49,6 +49,10 @@
             {
                 <li class="nav-item @_Layout.UsersNavClass(ViewContext)">
                     <a class="nav-link" asp-page="/User/Index">Users</a>
+                </li>
+
+                <li class="nav-item @_Layout.CertbotNavClass(ViewContext)">
+                    <a class="nav-link" asp-page="/Certbot/Index">Certbot</a>
                 </li>
             }
 

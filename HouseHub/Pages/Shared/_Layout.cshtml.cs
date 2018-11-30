@@ -8,12 +8,14 @@ public static class _Layout
     public static string Create => "/Property/Create";
     public static string List => "/Property/Index";
     public static string User => "/User";
+    public static string Certbot => "/Certbot/Index";
 
     public static string IndexNavClass(ViewContext viewContext) => PageNavClass(viewContext, Index);
     public static string ReviewNavClass(ViewContext viewContext) => PageNavClass(viewContext, ReviewProperties);
     public static string CreateNavClass(ViewContext viewContext) => PageNavClass(viewContext, Create);
     public static string ListNavClass(ViewContext viewContext) => PageNavClass(viewContext, List);
     public static string UsersNavClass(ViewContext viewContext) => FolderNavClass(viewContext, User);
+    public static string CertbotNavClass(ViewContext viewContext) => PageNavClass(viewContext, Certbot);
 
     public static string PageNavClass(ViewContext viewContext, string page)
     {

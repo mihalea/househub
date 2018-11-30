@@ -72,7 +72,9 @@ namespace HouseHub
                         new[] {Constants.AdminRole, Constants.LandlordRole});
                     options.Conventions.AuthorizePage("/User/Index",
                         new[] { Constants.AdminRole });
-                    
+                    options.Conventions.AuthorizePage("/Certbot/Index",
+                        new[] { Constants.AdminRole });
+
                 })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
