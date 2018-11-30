@@ -17,7 +17,7 @@
         {
             <article class="col-md-4 pb-5">
                 <h4 class="border-bottom pb-2">
-                    <a href="#" class="text-dark">@Html.DisplayFor(modelItem => item.Name)</a>
+                    <a asp-page="/Property/View" asp-route-id="@item.AccommodationID"  class="text-dark">@Html.DisplayFor(modelItem => item.Name)</a>
 
 
                 </h4>
